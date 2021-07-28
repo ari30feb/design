@@ -1,6 +1,6 @@
 package problem1;
 
-public class State{
+public interface State{
 	public boolean start()
 	{
 		return false;
@@ -19,25 +19,25 @@ public class State{
 	}
 }
 
-public class StartState:public State {
+public class StartState implements State {
 	public boolean start()
 	{
 		return true;
 	}
 }
-public class StopState:public State {
+public class StopState implements State {
 	public boolean stop()
 	{
 		return true;
 	}
 }
-public class PauseState:public State {
+public class PauseState implements State {
 	public boolean pause()
 	{
 		return true;
 	}
 }
-public class ResumeState:public State {
+public class ResumeState implements State {
 	public boolean resume()
 	{
 		return true;
@@ -48,23 +48,29 @@ public class ResumeState:public State {
 
 public class StopWatch {
 	
+	State s;
 	
-	public boolean start(State s)
+	public void changeState(State newState)
+	{
+		s = newState;
+	}
+	
+	public boolean start()
 	{
 		
 		return s.start();
 	}
-	public boolean stop(State s)
+	public boolean stop()
 	{
 		
 		return s.stop();
 	}
-	public boolean pause(State s)
+	public boolean pause()
 	{
 		
 		return s.pause();
 	}
-	public boolean resume(State s)
+	public boolean resume()
 	{
 		
 		return s.resume();
